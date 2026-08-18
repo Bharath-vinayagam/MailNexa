@@ -72,7 +72,6 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // Data sanitization
 app.use(mongoSanitize());  // NoSQL injection protection
-app.use(xss());            // XSS protection
 
 // Rate limiting
 app.use('/api', generalLimiter);
