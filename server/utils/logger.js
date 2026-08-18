@@ -2,6 +2,12 @@ const winston = require('winston');
 const path = require('path');
 const fs = require('fs');
 
+const { combine, timestamp, printf, colorize, errors, json } = winston.format;
+
+const consoleFormat = printf(({ level, message, timestamp: ts, stack }) => {
+  return `${ts} [${level}]: ${stack || message}`;
+});
+
 const transportsList = [
   new winston.transports.Console({
     format: combine(
