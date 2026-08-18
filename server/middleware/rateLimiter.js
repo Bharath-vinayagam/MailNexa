@@ -19,7 +19,7 @@ const generalLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   handler: rateLimitHandler,
-  skip: (req) => process.env.NODE_ENV === 'test',
+  skip: (req) => process.env.NODE_ENV === 'test' || !!process.env.VERCEL,
 });
 
 /**
@@ -31,7 +31,7 @@ const authLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   handler: rateLimitHandler,
-  skip: (req) => process.env.NODE_ENV === 'test',
+  skip: (req) => process.env.NODE_ENV === 'test' || !!process.env.VERCEL,
   message: 'Too many authentication attempts',
 });
 
