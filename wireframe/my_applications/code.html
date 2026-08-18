@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MailGuard | Application Status Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727784",
+                    "primary": "#00458f",
+                    "surface-container-low": "#f3f4f6",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9fb",
+                    "surface-variant": "#e1e2e4",
+                    "on-primary-container": "#c7d9ff",
+                    "background": "#f8f9fb",
+                    "surface-container": "#edeef0",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b7c8dc",
+                    "secondary-container": "#fdaf00",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-fixed": "#001b3f",
+                    "on-tertiary-fixed": "#0b1d2c",
+                    "tertiary-fixed": "#d2e4f9",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#805600",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffddaf",
+                    "surface-tint": "#005cbb",
+                    "on-secondary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-background": "#191c1e",
+                    "on-secondary-container": "#694600",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e1e2e4",
+                    "on-secondary-fixed": "#281800",
+                    "inverse-primary": "#abc7ff",
+                    "primary-container": "#005cbb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "tertiary-container": "#4f6071",
+                    "primary-fixed": "#d7e2ff",
+                    "on-surface": "#191c1e",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#374859",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#abc7ff",
+                    "surface-bright": "#f8f9fb",
+                    "on-tertiary-container": "#c8daee",
+                    "secondary-fixed-dim": "#ffba43",
+                    "on-surface-variant": "#424752",
+                    "on-tertiary-fixed-variant": "#384859",
+                    "surface-container-high": "#e7e8ea"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "gutter-mobile": "12px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-applied { border-left: 4px solid #727784; }
+        .status-interview { border-left: 4px solid #005cbb; }
+        .status-offer { border-left: 4px solid #2e7d32; }
+        .status-rejected { border-left: 4px solid #ba1a1a; }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-background flex justify-between items-center px-margin-mobile h-16 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-size: 28px;">mail_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MailGuard</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A clean professional headshot of a university student for a profile avatar. The student is smiling warmly against a soft-focus campus library background. The lighting is bright and natural, reflecting a high-end corporate academic aesthetic with soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVwpO90HlIY_lPzbmR6HzMls66Rww3HdKIPL2zm80MmrX3a5D0VteIUnmz6nSsDUzlaQpOJAom_i4UJRnddUje5njRpzOg6EWNWodJ4GNUt_q1g2cwuOWdSoGtSpDXw89kq4Vt1n4Fzzn6molyiNziwmhwvfuMa2PfraB0YiIeA6r3sT8Yt5L5Z8qVepHwnyTHoQZ3EY7V_o3wE7e-fP686arzMoFlV6KBvlCJcFVWteK9iIUAPmcGqw"/>
+</div>
+</header>
+<main class="mt-20 px-margin-mobile max-w-2xl mx-auto">
+<!-- Summary Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-3 mb-lg">
+<div class="col-span-2 bg-primary-container p-lg rounded-xl flex items-center justify-between text-on-primary-container overflow-hidden relative">
+<div class="z-10">
+<p class="font-label-lg text-label-lg opacity-80 uppercase tracking-widest">Total Applied</p>
+<p class="font-headline-lg text-headline-lg">24</p>
+</div>
+<span class="material-symbols-outlined text-7xl opacity-20 absolute -right-4 -bottom-4">send</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">groups</span>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Interviews</p>
+</div>
+<p class="font-headline-md text-headline-md">3</p>
+</div>
+<div class="bg-surface-container-high p-md rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[#2e7d32]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Offers</p>
+</div>
+<p class="font-headline-md text-headline-md text-[#2e7d32]">1</p>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<div class="flex gap-2 mb-md">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-xl">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-2 focus:ring-primary" placeholder="Search companies..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-highest rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Grouped List View -->
+<div class="space-y-lg">
+<!-- Group: Google -->
+<div class="space-y-2">
+<h2 class="font-title-md text-title-md text-on-surface-variant ml-2">Google</h2>
+<div class="space-y-2">
+<!-- Entry 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm status-interview cursor-pointer hover:bg-surface-variant transition-colors active:scale-95 duration-100 flex items-center justify-between" onclick="this.classList.toggle('ring-2'); this.classList.toggle('ring-primary')">
+<div>
+<div class="flex items-center gap-2">
+<p class="font-title-md text-title-md">UX Design Intern</p>
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary text-[10px] font-bold rounded-full uppercase">Interview</span>
+</div>
+<p class="text-body-md text-outline">Mountain View, CA • 2 hours ago</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Entry 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm status-applied opacity-70 cursor-pointer flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<p class="font-title-md text-title-md">Product Management</p>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant text-[10px] font-bold rounded-full uppercase">Applied</span>
+</div>
+<p class="text-body-md text-outline">London, UK • 4 days ago</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Group: Deloitte -->
+<div class="space-y-2">
+<h2 class="font-title-md text-title-md text-on-surface-variant ml-2">Deloitte</h2>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm status-offer cursor-pointer flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<p class="font-title-md text-title-md">Strategy Consultant</p>
+<span class="px-2 py-0.5 bg-[#dcfce7] text-[#166534] text-[10px] font-bold rounded-full uppercase">Offer</span>
+</div>
+<p class="text-body-md text-outline">New York, NY • 1 day ago</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Group: Stripe -->
+<div class="space-y-2">
+<h2 class="font-title-md text-title-md text-on-surface-variant ml-2">Stripe</h2>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm status-rejected cursor-pointer flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<p class="font-title-md text-title-md">Software Engineer</p>
+<span class="px-2 py-0.5 bg-error-container/20 text-error text-[10px] font-bold rounded-full uppercase">Rejected</span>
+</div>
+<p class="text-body-md text-outline">Remote • 1 week ago</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button for Adding New -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-secondary-container text-on-secondary-container rounded-2xl shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-background flex justify-around items-center px-2 py-3 shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-label-lg text-label-lg">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-lg text-label-lg">Deadlines</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 Active: scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment_turned_in</span>
+<span class="font-label-lg text-label-lg">Apps</span>
+</a>
+</nav>
+<script>
+        // Simple tap micro-interaction for cards
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('click', () => {
+                // In a real app, this would route to email thread
+                console.log('Opening email thread...');
+            });
+        });
+    </script>
+</body></html>

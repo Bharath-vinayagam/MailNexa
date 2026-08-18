@@ -1,0 +1,68 @@
+name: mailguard
+description: MailNexa – AI-Powered Gmail Priority Assistant for Final Year Students
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Navigation
+  go_router: ^13.2.0
+
+  # HTTP Client
+  dio: ^5.4.3+1
+  http: ^1.2.1
+
+  # Google Sign-In & Firebase
+  google_sign_in: ^6.2.1
+  firebase_core: ^3.1.0
+  firebase_messaging: ^15.0.0
+  flutter_local_notifications: ^17.1.2
+
+  # Secure Storage & Preferences
+  flutter_secure_storage: ^9.0.0
+  shared_preferences: ^2.2.3
+
+  # Charts
+  fl_chart: ^0.68.0
+
+  # UI
+  shimmer: ^3.0.0
+  lottie: ^3.1.0
+  cached_network_image: ^3.3.1
+
+  # Utilities
+  intl: ^0.20.2
+  uuid: ^4.4.0
+  equatable: ^2.0.5
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  riverpod_generator: ^2.4.2
+  build_runner: ^2.4.10
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  mockito: ^5.4.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/animations/
+    - assets/icons/

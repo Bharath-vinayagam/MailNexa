@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MailGuard - Deadline Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .deadline-card-hover {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .deadline-card-hover:active {
+            transform: scale(0.98);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727784",
+                        "primary": "#00458f",
+                        "surface-container-low": "#f3f4f6",
+                        "surface-dim": "#d9dadc",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9fb",
+                        "surface-variant": "#e1e2e4",
+                        "on-primary-container": "#c7d9ff",
+                        "background": "#f8f9fb",
+                        "surface-container": "#edeef0",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#b7c8dc",
+                        "secondary-container": "#fdaf00",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary-fixed": "#0b1d2c",
+                        "tertiary-fixed": "#d2e4f9",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#805600",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffddaf",
+                        "surface-tint": "#005cbb",
+                        "on-secondary-fixed-variant": "#614000",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#694600",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-secondary-fixed": "#281800",
+                        "inverse-primary": "#abc7ff",
+                        "primary-container": "#005cbb",
+                        "inverse-on-surface": "#f0f1f3",
+                        "tertiary-container": "#4f6071",
+                        "primary-fixed": "#d7e2ff",
+                        "on-surface": "#191c1e",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#374859",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#abc7ff",
+                        "surface-bright": "#f8f9fb",
+                        "on-tertiary-container": "#c8daee",
+                        "secondary-fixed-dim": "#ffba43",
+                        "on-surface-variant": "#424752",
+                        "on-tertiary-fixed-variant": "#384859",
+                        "surface-container-high": "#e7e8ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "gutter-mobile": "12px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background docked full-width top-0 z-40 fixed">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed text-2xl" data-icon="mail_lock">mail_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MailGuard</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a university student for an academic profile, featuring soft natural lighting and a clean, minimalist campus background. The student has a focused and friendly expression, wearing modern business-casual attire. The image adheres to a corporate yet approachable aesthetic with a high-key light mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_h2POk5j1sM-jFVaDAJ_gpJTZyLwUHwQVmQV6UmAKtTlWxgzV5LeZaitk4lW7UOn2d7_HJX97G6KRxytUfuQphPKfBBsECqQTMqaJD8ESpuVAS4WnZSLh0CKEH2TshCn3mfSuOjn-lGEFMjxZM2XDytqh8043gwA8qnp1ssqcVKWaNwQ15TGheDob3UzH20UhuCzpCCOYR0_ZL-4i0oy4iaHfZhreBUZ4UbQN4kwxXv-rvvG5qhOSNA"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile">
+<!-- Header Info -->
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-background mb-base">Deadlines</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Stay on top of your academic and career goals.</p>
+</div>
+<!-- Section: Due Today -->
+<section class="mb-lg">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-title-md text-title-md text-secondary font-bold flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+                    Due Today
+                </h3>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full font-label-lg text-label-lg">2 Items</span>
+</div>
+<div class="space-y-sm">
+<!-- Critical Deadline Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border-l-4 border-secondary shadow-sm deadline-card-hover flex gap-md items-start">
+<div class="bg-secondary-container text-on-secondary-container p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="font-label-md text-label-md">OCT</span>
+<span class="font-headline-md text-headline-md">24</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-xs">
+<h4 class="font-title-md text-title-md text-on-surface">TCS NQT Registration</h4>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded font-label-md text-label-md">Critical</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Source: TCS NextStep Portal</p>
+<div class="flex items-center gap-2 text-secondary font-bold font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+                            Closes in 4 hours
+                        </div>
+</div>
+</div>
+<!-- Another Today Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border-l-4 border-secondary shadow-sm deadline-card-hover flex gap-md items-start">
+<div class="bg-secondary-container text-on-secondary-container p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="font-label-md text-label-md">OCT</span>
+<span class="font-headline-md text-headline-md">24</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">Google STEP Application</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Source: Google Careers</p>
+<div class="flex items-center gap-2 text-secondary font-bold font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="schedule">schedule</span>
+                            Due by 11:59 PM
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Upcoming -->
+<section class="mb-lg">
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-sm">Upcoming</h3>
+<div class="space-y-sm">
+<!-- Upcoming Item 1 -->
+<div class="bg-surface-container-low rounded-xl p-md border-l-4 border-primary shadow-sm deadline-card-hover flex gap-md items-start">
+<div class="bg-primary-fixed text-on-primary-fixed p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="font-label-md text-label-md">OCT</span>
+<span class="font-headline-md text-headline-md">26</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">JP Morgan CFG Hackathon</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Source: HackerRank Confirmation</p>
+<div class="flex items-center gap-2 text-primary font-bold font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="event">event</span>
+                            In 2 days
+                        </div>
+</div>
+</div>
+<!-- Upcoming Item 2 -->
+<div class="bg-surface-container-low rounded-xl p-md border-l-4 border-primary shadow-sm deadline-card-hover flex gap-md items-start">
+<div class="bg-primary-fixed text-on-primary-fixed p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="font-label-md text-label-md">OCT</span>
+<span class="font-headline-md text-headline-md">30</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">Amazon SDE Internship</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Source: Amazon University Jobs</p>
+<div class="flex items-center gap-2 text-primary font-bold font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="event">event</span>
+                            In 6 days
+                        </div>
+</div>
+</div>
+<!-- Upcoming Item 3 -->
+<div class="bg-surface-container-low rounded-xl p-md border-l-4 border-primary shadow-sm deadline-card-hover flex gap-md items-start">
+<div class="bg-primary-fixed text-on-primary-fixed p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="font-label-md text-label-md">NOV</span>
+<span class="font-headline-md text-headline-md">02</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface mb-xs">Microsoft Explore Program</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-sm">Source: Microsoft Talent</p>
+<div class="flex items-center gap-2 text-primary font-bold font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="event">event</span>
+                            In 9 days
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Completed -->
+<section class="mb-lg">
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-sm">Completed</h3>
+<div class="space-y-sm opacity-60">
+<div class="bg-surface-container rounded-xl p-md flex gap-md items-center grayscale">
+<div class="bg-outline-variant text-on-surface-variant p-sm rounded-lg flex flex-col items-center min-w-[48px]">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-surface line-through">Adobe WIT Scholarship</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Submitted on Oct 20</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Deadline Tracker Item (Bento/Card variant for visual interest) -->
+<div class="mt-xl p-lg bg-tertiary-fixed rounded-2xl relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-tertiary-fixed mb-xs">Smart Summary</h3>
+<p class="font-body-md text-body-md text-on-tertiary-fixed-variant mb-md">You have 5 active deadlines this week. Most are for Software Engineering roles.</p>
+<button class="bg-tertiary text-on-tertiary px-lg py-sm rounded-full font-label-lg text-label-lg flex items-center gap-2 hover:bg-tertiary-container transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="auto_awesome">auto_awesome</span>
+                    View Strategy
+                </button>
+</div>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="assignment_turned_in">assignment_turned_in</span>
+</div>
+</div>
+</main>
+<!-- FAB: Add Manual Deadline (Contextual for this page) -->
+<button class="fixed right-margin-mobile bottom-24 bg-secondary-container text-on-secondary-container w-14 h-14 rounded-2xl shadow-lg flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-background fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-label-lg text-label-lg">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 Active: scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-lg text-label-lg">Deadlines</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-label-lg text-label-lg">Apps</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.deadline-card-hover').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

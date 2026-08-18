@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "MailGuard API Collection",
+    "description": "Complete REST API endpoints for MailGuard Node.js/Express Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "accessToken", "value": "" },
+    { "key": "refreshToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Get OAuth URL",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/auth/url" }
+          }
+        },
+        {
+          "name": "Google Callback",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/auth/google" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"4/0AY0e-g7...\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/auth/refresh" },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/auth/profile" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Emails",
+      "item": [
+        {
+          "name": "Get Emails",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/emails?category=Placement&page=1&limit=20" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        },
+        {
+          "name": "Search Emails",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/emails/search?q=interview" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        },
+        {
+          "name": "Trigger Sync",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/emails/sync" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Deadlines",
+      "item": [
+        {
+          "name": "Get Deadlines",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/deadlines" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        },
+        {
+          "name": "Create Deadline",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/deadlines" },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"TCS NQT Registration\",\n  \"dueDate\": \"2026-08-01T18:00:00.000Z\",\n  \"category\": \"Placement\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Get Grouped Applications",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/applications/grouped" },
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }]
+          }
+        },
+        {
+          "name": "Create Application",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/applications" },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"Google\",\n  \"role\": \"Software Engineer Intern\",\n  \"status\": \"Applied\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

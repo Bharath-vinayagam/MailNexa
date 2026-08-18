@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MailGuard Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727784",
+                    "primary": "#00458f",
+                    "surface-container-low": "#f3f4f6",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9fb",
+                    "surface-variant": "#e1e2e4",
+                    "on-primary-container": "#c7d9ff",
+                    "background": "#f8f9fb",
+                    "surface-container": "#edeef0",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b7c8dc",
+                    "secondary-container": "#fdaf00",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-fixed": "#001b3f",
+                    "on-tertiary-fixed": "#0b1d2c",
+                    "tertiary-fixed": "#d2e4f9",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#805600",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffddaf",
+                    "surface-tint": "#005cbb",
+                    "on-secondary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-background": "#191c1e",
+                    "on-secondary-container": "#694600",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e1e2e4",
+                    "on-secondary-fixed": "#281800",
+                    "inverse-primary": "#abc7ff",
+                    "primary-container": "#005cbb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "tertiary-container": "#4f6071",
+                    "primary-fixed": "#d7e2ff",
+                    "on-surface": "#191c1e",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#374859",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#abc7ff",
+                    "surface-bright": "#f8f9fb",
+                    "on-tertiary-container": "#c8daee",
+                    "secondary-fixed-dim": "#ffba43",
+                    "on-surface-variant": "#424752",
+                    "on-tertiary-fixed-variant": "#384859",
+                    "surface-container-high": "#e7e8ea"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "gutter-mobile": "12px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar-transition {
+            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full fixed top-0 z-40 bg-surface dark:bg-background">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-size: 28px;">mail_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MailGuard</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-title-md text-title-md text-on-surface-variant hidden md:block">Hello, Jordan</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/10">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a university student with a friendly expression, soft natural lighting, high-end corporate aesthetic, blurred academic library background, minimalist composition with cool blue and white tones matching a professional productivity dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdvELnuX2GzgVc2TzvDhd0cNsMJo2v91LR97tDNty8B6paBtchbs6yF6yaxs1yti0XEZUldwV-d-Fydia6Cra1B_KvofX0OsGG0eikv7jCjexflwSMO_mFtIzYRsqRbHaZ6_XQOqHTe5w32vgnEHZbtptsJcbzNrfjJDE2X9wpyjsRlNxlc2lyjjem1hDQsWMYF-34_SAryNVuBCrJ9IFeYXmSQEs9QIm0-HOdAEuzNoyr812wuq9tHA"/>
+</div>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-5xl mx-auto space-y-lg">
+<!-- Greeting (Mobile Only) -->
+<section class="md:hidden">
+<h2 class="font-headline-md text-headline-md text-on-surface">Hello, Jordan</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Your inbox is under control today.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-mobile md:gap-lg">
+<!-- Today's Priorities Card (Bento Row 1) -->
+<div class="md:col-span-12 lg:col-span-8 bg-primary-container text-on-primary-container p-6 rounded-[24px] flex flex-col justify-between min-h-[200px] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -mr-12 -mt-12 blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
+<div class="z-10">
+<span class="inline-flex items-center px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-md font-label-md mb-4">
+<span class="material-symbols-outlined text-[14px] mr-1">priority_high</span> HIGH PRIORITY
+                    </span>
+<h3 class="font-headline-lg text-headline-lg leading-tight">3 Important Placement Updates</h3>
+<p class="font-body-lg text-body-lg mt-2 opacity-90 max-w-md">Critical emails regarding your Google and Deloitte applications require attention.</p>
+</div>
+<div class="z-10 mt-6">
+<button class="bg-surface-container-lowest text-primary px-6 py-3 rounded-full font-title-md text-title-md hover:bg-surface-variant transition-colors flex items-center gap-2">
+                        View Priority Inbox <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Inbox Summary Stats (Bento Row 2 - Left) -->
+<div class="md:col-span-6 lg:col-span-4 bg-surface-container rounded-[24px] p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-lg text-title-lg">Classification</h3>
+<span class="material-symbols-outlined text-on-surface-variant">analytics</span>
+</div>
+<div class="flex-grow flex items-end justify-between h-32 px-2 gap-2">
+<div class="flex flex-col items-center flex-1 gap-2">
+<div class="w-full bg-primary rounded-t-lg chart-bar-transition" style="height: 85%;"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Place.</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-2">
+<div class="w-full bg-tertiary-container rounded-t-lg chart-bar-transition" style="height: 60%;"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Acad.</span>
+</div>
+<div class="flex flex-col items-center flex-1 gap-2">
+<div class="w-full bg-outline-variant rounded-t-lg chart-bar-transition" style="height: 35%;"></div>
+<span class="text-label-md font-label-md text-on-surface-variant">Pers.</span>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-surface-variant space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-body-md text-body-md">Placement</span>
+</div>
+<span class="font-title-md text-title-md">42%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary-container"></div>
+<span class="font-body-md text-body-md">Academic</span>
+</div>
+<span class="font-title-md text-title-md">38%</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Deadlines (Bento Row 2 - Right) -->
+<div class="md:col-span-6 lg:col-span-8 space-y-4">
+<div class="flex justify-between items-center px-2">
+<h3 class="font-title-lg text-title-lg">Upcoming Deadlines</h3>
+<button class="text-primary font-label-lg text-label-lg hover:underline">VIEW ALL</button>
+</div>
+<div class="space-y-3">
+<!-- Deadline 1 -->
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl border-l-4 border-secondary-container hover:bg-surface-container transition-all group">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<h4 class="font-title-md text-title-md">Google SWE Intern App</h4>
+<span class="text-secondary font-label-lg text-label-lg bg-secondary-fixed px-2 py-0.5 rounded">DUE IN 4h</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Application submission deadline</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<!-- Deadline 2 -->
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl border-l-4 border-primary hover:bg-surface-container transition-all group">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">assignment</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<h4 class="font-title-md text-title-md">Mid-Term Exam Registration</h4>
+<span class="text-on-surface-variant font-label-lg text-label-lg">TOMORROW</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Financial Mathematics CS402</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<!-- Deadline 3 -->
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl border-l-4 border-outline hover:bg-surface-container transition-all group">
+<div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<h4 class="font-title-md text-title-md">Housing Contract Signature</h4>
+<span class="text-on-surface-variant font-label-lg text-label-lg">IN 3 DAYS</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Riverdale Student Hall</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Insights Section (Visual Interest) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 pb-8">
+<div class="bg-surface-container-highest/50 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="text-headline-md font-headline-md text-primary">12</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Saved Time (hrs/mo)</span>
+</div>
+<div class="bg-surface-container-highest/50 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="text-headline-md font-headline-md text-primary">98%</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Bot Filter Accuracy</span>
+</div>
+<div class="bg-surface-container-highest/50 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="text-headline-md font-headline-md text-primary">0</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Missed Deadlines</span>
+</div>
+<div class="bg-surface-container-highest/50 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="text-headline-md font-headline-md text-primary">15</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Drafts Ready</span>
+</div>
+</div>
+</main>
+<!-- FAB - Suppressed on most screens, but useful on Dashboard -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-secondary-container text-on-secondary-container rounded-2xl shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-size: 24px; font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface dark:bg-background shadow-sm md:hidden">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-label-lg text-label-lg">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-lg text-label-lg">Deadlines</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-label-lg text-label-lg">Apps</span>
+</a>
+</nav>
+<!-- Desktop Sidebar/Nav (Alternative for Web Layout) -->
+<nav class="hidden md:flex fixed left-0 top-16 bottom-0 w-20 flex-col items-center py-8 gap-8 bg-surface-container-low z-30">
+<a class="p-3 bg-primary-container text-on-primary-container rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:bg-surface-variant rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined">inbox</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:bg-surface-variant rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined">event</span>
+</a>
+<a class="p-3 text-on-surface-variant hover:bg-surface-variant rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</a>
+<div class="mt-auto">
+<a class="p-3 text-on-surface-variant hover:bg-surface-variant rounded-2xl transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for chart animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar-transition');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 100);
+            });
+        });
+
+        // Toggle active nav states (logic demonstration)
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // In a real app, this would handle routing
+                // No need to change logic as we are rendering 'Home' active by default per prompt
+            });
+        });
+    </script>
+</body></html>

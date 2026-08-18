@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MailGuard - Priority Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727784",
+                    "primary": "#00458f",
+                    "surface-container-low": "#f3f4f6",
+                    "surface-dim": "#d9dadc",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9fb",
+                    "surface-variant": "#e1e2e4",
+                    "on-primary-container": "#c7d9ff",
+                    "background": "#f8f9fb",
+                    "surface-container": "#edeef0",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b7c8dc",
+                    "secondary-container": "#fdaf00",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-fixed": "#001b3f",
+                    "on-tertiary-fixed": "#0b1d2c",
+                    "tertiary-fixed": "#d2e4f9",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#805600",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffddaf",
+                    "surface-tint": "#005cbb",
+                    "on-secondary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#00458f",
+                    "on-background": "#191c1e",
+                    "on-secondary-container": "#694600",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e1e2e4",
+                    "on-secondary-fixed": "#281800",
+                    "inverse-primary": "#abc7ff",
+                    "primary-container": "#005cbb",
+                    "inverse-on-surface": "#f0f1f3",
+                    "tertiary-container": "#4f6071",
+                    "primary-fixed": "#d7e2ff",
+                    "on-surface": "#191c1e",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#374859",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#abc7ff",
+                    "surface-bright": "#f8f9fb",
+                    "on-tertiary-container": "#c8daee",
+                    "secondary-fixed-dim": "#ffba43",
+                    "on-surface-variant": "#424752",
+                    "on-tertiary-fixed-variant": "#384859",
+                    "surface-container-high": "#e7e8ea"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "gutter-mobile": "12px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .email-card-transition {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+        }
+
+        .fab-animation:active {
+            transform: scale(0.92);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-background h-16 w-full flex justify-between items-center px-margin-mobile">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-size: 28px;">mail_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MailGuard</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young university student for a profile avatar. The person has a friendly expression and is wearing casual academic attire. The background is a softly blurred modern university campus hallway with bright, natural lighting. The overall aesthetic is clean, professional, and corporate-modern to match the MailGuard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDklzGRVDHjzfmIt4xfCgFk8HAqffavfm_HqJsRCPD2LxfBBdtn3fLVgLtAIA9CdzOIAim4FdbOUo2FI0tT8KxgnfPo6EjuKeMI3QEup2HYOU0LT4lyNObt92vNc8kpr3Y8fwTSFQbe1DQxscyvMA_dynJLV5Px4g2FVuR-9NKUVgjyK_E5R62Syiip_A8Ss5MNqnBPLgtJsZh487e7FtlsrdQ-8EaG5TqNaD3dl436-LDaZhgav8ykng"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="max-w-2xl mx-auto px-margin-mobile pt-4">
+<!-- Filter Chips Section -->
+<section class="flex gap-2 overflow-x-auto no-scrollbar pb-6">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label-lg text-label-lg whitespace-nowrap">All</button>
+<button class="px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-lg text-label-lg whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Placement</button>
+<button class="px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-lg text-label-lg whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Academic</button>
+<button class="px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-lg text-label-lg whitespace-nowrap hover:bg-surface-variant transition-colors border border-outline-variant/30">Personal</button>
+</section>
+<!-- Email List -->
+<section class="space-y-sm">
+<!-- Group Label -->
+<div class="flex items-center justify-between mb-2 mt-4 px-1">
+<h2 class="text-on-surface-variant font-label-lg text-label-lg uppercase tracking-wider">Priority Communications</h2>
+<span class="text-primary font-label-lg text-label-lg">3 New</span>
+</div>
+<!-- High Priority Card 1 -->
+<div class="email-card-transition group relative bg-surface-container-lowest border-l-[4px] border-secondary-container rounded-xl p-4 shadow-sm hover:bg-surface-container-low active:scale-[0.98] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-title-md text-title-md text-on-surface">Career Services - TechCorp</span>
+<span class="text-xs text-on-surface-variant font-medium">9:41 AM</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+                        HIGH
+                    </span>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded font-label-md text-label-md">Placement</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-1 line-clamp-1">Interview Invitation: Software Engineer Intern</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Dear Student, We are pleased to invite you for a technical interview following your impressive application for the summer...</p>
+</div>
+<!-- High Priority Card 2 -->
+<div class="email-card-transition group relative bg-surface-container-lowest border-l-[4px] border-secondary-container rounded-xl p-4 shadow-sm hover:bg-surface-container-low active:scale-[0.98] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-title-md text-title-md text-on-surface">Dr. Helena Vance</span>
+<span class="text-xs text-on-surface-variant font-medium">Yesterday</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+                        HIGH
+                    </span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded font-label-md text-label-md">Academic</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-1 line-clamp-1">Thesis Proposal Feedback: Urgent Revisions Required</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">I have reviewed your initial draft for the neural networks research. While the methodology is sound, you need to address the...</p>
+</div>
+<!-- Medium Priority Card -->
+<div class="email-card-transition group relative bg-surface-container-lowest border-l-[4px] border-primary-container rounded-xl p-4 shadow-sm hover:bg-surface-container-low active:scale-[0.98] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-title-md text-title-md text-on-surface">University Registrar</span>
+<span class="text-xs text-on-surface-variant font-medium">Oct 12</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded font-label-md text-label-md flex items-center gap-1">
+                        MED
+                    </span>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-label-md text-label-md">Personal</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-1 line-clamp-1">Tuition Payment Confirmation for Fall 2023</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">This is an automated confirmation that your payment of $4,500 has been successfully processed for the current semester...</p>
+</div>
+<!-- Group Label -->
+<div class="flex items-center justify-between mb-2 mt-8 px-1">
+<h2 class="text-on-surface-variant font-label-lg text-label-lg uppercase tracking-wider">Earlier this week</h2>
+</div>
+<!-- Low Priority Card -->
+<div class="email-card-transition group relative bg-surface-container-low border-l-[4px] border-outline-variant rounded-xl p-4 hover:bg-surface-container-high active:scale-[0.98] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-title-md text-title-md text-on-surface opacity-80">Student Union Weekly</span>
+<span class="text-xs text-on-surface-variant font-medium">Oct 10</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-label-md text-label-md">LOW</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-1 line-clamp-1">Upcoming Campus Events &amp; Workshop Schedule</h3>
+<p class="text-body-md text-on-surface-variant/70 line-clamp-2">Don't miss out on this week's networking mixer and the workshop on "Effective Time Management" happening in the main library...</p>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fab-animation fixed right-6 bottom-24 w-14 h-14 bg-secondary-container text-on-secondary-container rounded-2xl shadow-lg flex items-center justify-center transition-all z-40 hover:shadow-xl group" id="sync-fab">
+<span class="material-symbols-outlined text-[28px]" id="sync-icon">sync</span>
+<div class="absolute -top-12 right-0 bg-inverse-surface text-inverse-on-surface text-xs px-3 py-1.5 rounded-lg opacity-0 transition-opacity pointer-events-none" id="sync-status">
+            Syncing Inbox...
+        </div>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface dark:bg-background shadow-sm">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 cursor-pointer transition-colors px-5 py-1 rounded-2xl">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inbox</span>
+<span class="font-label-lg text-label-lg">Inbox</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 cursor-pointer transition-colors px-5 py-1 rounded-2xl">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-lg text-label-lg">Deadlines</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 cursor-pointer transition-colors px-5 py-1 rounded-2xl">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-label-lg text-label-lg">Apps</span>
+</div>
+</nav>
+<script>
+        const fab = document.getElementById('sync-fab');
+        const syncIcon = document.getElementById('sync-icon');
+        const syncStatus = document.getElementById('sync-status');
+
+        fab.addEventListener('click', () => {
+            // Rotation animation
+            syncIcon.classList.add('animate-spin');
+            syncStatus.classList.remove('opacity-0');
+            syncStatus.classList.add('opacity-100');
+            
+            // Interaction feedback
+            fab.classList.add('bg-primary-container', 'text-on-primary-container');
+            fab.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+
+            setTimeout(() => {
+                syncIcon.classList.remove('animate-spin');
+                syncStatus.classList.remove('opacity-100');
+                syncStatus.classList.add('opacity-0');
+                
+                fab.classList.remove('bg-primary-container', 'text-on-primary-container');
+                fab.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                
+                // Optional: Ripple effect or toast could go here
+            }, 2000);
+        });
+
+        // Add subtle hover effect for cards
+        const cards = document.querySelectorAll('.email-card-transition');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+            });
+        });
+    </script>
+</body></html>

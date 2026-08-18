@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom Scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9dadc;
+            border-radius: 10px;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727784",
+                        "primary": "#00458f",
+                        "surface-container-low": "#f3f4f6",
+                        "surface-dim": "#d9dadc",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9fb",
+                        "surface-variant": "#e1e2e4",
+                        "on-primary-container": "#c7d9ff",
+                        "background": "#f8f9fb",
+                        "surface-container": "#edeef0",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#b7c8dc",
+                        "secondary-container": "#fdaf00",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary-fixed": "#0b1d2c",
+                        "tertiary-fixed": "#d2e4f9",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#805600",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffddaf",
+                        "surface-tint": "#005cbb",
+                        "on-secondary-fixed-variant": "#614000",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#694600",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-secondary-fixed": "#281800",
+                        "inverse-primary": "#abc7ff",
+                        "primary-container": "#005cbb",
+                        "inverse-on-surface": "#f0f1f3",
+                        "tertiary-container": "#4f6071",
+                        "primary-fixed": "#d7e2ff",
+                        "on-surface": "#191c1e",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#374859",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#abc7ff",
+                        "surface-bright": "#f8f9fb",
+                        "on-tertiary-container": "#c8daee",
+                        "secondary-fixed-dim": "#ffba43",
+                        "on-surface-variant": "#424752",
+                        "on-tertiary-fixed-variant": "#384859",
+                        "surface-container-high": "#e7e8ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "gutter-mobile": "12px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["11px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full fixed top-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-variant transition-colors" onclick="history.back()">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary font-bold">mail_lock</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MailGuard</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional student portrait for a user profile, captured in soft studio lighting with a clean, light-mode aesthetic. The individual has a friendly expression, wearing academic casual attire. The image uses a shallow depth of field against a minimalist white and light grey background, reflecting a focused and corporate modern UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsWECWUajJWacDiS77GILyiva94BF7b0lvys0tlxalJq0lrkYbf-12N3kFO3IjsESUXNNyeeSYWG6Jhe23J3MJKVY43YXtKfZwNr-iG2uOU2NRqbNEI4QXENAnatNcqDfePuZ7l_aKDPtXhEEdCcMNb2PCiJClt1v-8LNonaURC_d8lA35I7-Qf3kQaqa4EM-ysanz4lmua1d2c-1jX4d72rYfsTGS9Aw3lnXjNbRs53GwGV6ikGkHJQ"/>
+</button>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-4xl mx-auto">
+<!-- Content Header / Action Bar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-lg text-label-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] fill-icon">priority_high</span>
+                    High Priority
+                </span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-label-lg text-label-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">work</span>
+                    Internship
+                </span>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-label-lg transition-all hover:bg-primary-container active:scale-95">
+<span class="material-symbols-outlined">check_circle</span>
+                    Applied
+                </button>
+<button class="p-2 bg-surface-container-high text-on-surface rounded-xl hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">archive</span>
+</button>
+<button class="p-2 bg-surface-container-high text-error rounded-xl hover:bg-error-container transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Email Details Card -->
+<article class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-outline-variant/10">
+<!-- Header Section -->
+<div class="p-6 border-b border-surface-variant flex items-start gap-4">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center flex-shrink-0">
+<img class="w-10 h-10 object-contain" data-alt="A minimalist tech corporate logo with clean geometric lines, using deep navy blue and white. The design is sleek and professional, set against a pristine white circular background, suitable for a high-end email interface for a prestigious internship provider. Lighting is even and flat, adhering to a modern digital design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnLs_MtJi5ORfCl93Tfl3gGd8P9mwXk_QsLyT4FvyKksQYni5GmcxpQV6ejjJz5JrQ57RBK4CiFj9nkopFIHLN1EVrJoAkjpiPQKKwR7lq-_cU__Gc7cOoqMu6lbMMseex-r1uxYTe4OxOBP-z_3ObUgwFVC2Nvab_kgt2LVUMxwPJIu1fJB1hiFMSWOhNQkFsXHH4YhFCOjweiRoqApom-iSHxvcw9RWXXq4EmKJ4WFJZ2Yzgpd_tyw"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h2 class="font-title-lg text-title-lg text-on-surface">Stellar Dynamics HR</h2>
+<span class="text-on-surface-variant font-label-md text-label-md">Oct 24, 10:42 AM</span>
+</div>
+<p class="text-on-surface-variant font-body-md">careers@stellardynamics.io</p>
+</div>
+</div>
+<!-- Subject Line -->
+<div class="px-6 py-4 bg-surface-container-low/50">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-tight">
+                    Update on your Summer 2024 Software Engineering Internship Application
+                </h3>
+</div>
+<!-- Detected Deadline Box (Proactive Assistant Logic) -->
+<div class="mx-6 my-4 p-4 rounded-2xl bg-secondary-fixed/30 border border-secondary-fixed flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined fill-icon">event</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-secondary-fixed">Detected Deadline</p>
+<p class="text-on-secondary-fixed-variant font-body-md">Technical Assessment due by Oct 31, 2023</p>
+</div>
+</div>
+<button class="w-full md:w-auto px-6 py-2 bg-secondary text-on-secondary rounded-full font-label-lg hover:shadow-lg transition-all">
+                    Add to Tracker
+                </button>
+</div>
+<!-- Email Body Content -->
+<div class="p-6 text-on-surface-variant font-body-lg space-y-4 leading-relaxed">
+<p>Dear Candidate,</p>
+<p>Thank you for your interest in the Summer 2024 Software Engineering Internship position at Stellar Dynamics. We have reviewed your initial application and are excited to move forward with the next stage of our selection process.</p>
+<p>We would like to invite you to complete a 90-minute technical assessment on our coding platform. This assessment will focus on your problem-solving abilities and proficiency in data structures and algorithms.</p>
+<div class="bg-surface-container-low p-4 rounded-xl border-l-4 border-primary">
+<p class="font-title-md text-on-surface mb-1">Action Required:</p>
+<p>Please complete the assessment before <strong>Thursday, Oct 31, 2023 at 11:59 PM PST</strong>. You can access the portal using the link below:</p>
+<a class="inline-block mt-3 text-primary font-bold underline" href="#">Access Assessment Portal →</a>
+</div>
+<p>If you have any questions or require accommodations, please don't hesitate to reach out to our recruiting team.</p>
+<p>Best regards,<br/>The Stellar Dynamics Recruiting Team</p>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 bg-surface-container-lowest border-t border-surface-variant flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="flex items-center gap-2 w-full md:w-auto">
+<span class="text-on-surface-variant font-label-lg">STATUS:</span>
+<select class="flex-1 md:flex-none bg-surface-container-high border-none rounded-xl font-label-lg text-primary px-4 py-2 focus:ring-2 focus:ring-primary">
+<option selected="" value="applied">Applied</option>
+<option value="assessment">Technical Assessment</option>
+<option value="interview">Interviewing</option>
+<option value="offer">Offer Extended</option>
+<option value="rejected">Not Selected</option>
+</select>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-2 border border-outline text-on-surface rounded-xl font-label-lg hover:bg-surface-variant transition-colors">
+                        Change Category
+                    </button>
+<button class="flex-1 md:flex-none px-6 py-2 bg-primary text-on-primary rounded-xl font-label-lg hover:bg-primary-container transition-all">
+                        Reply
+                    </button>
+</div>
+</div>
+</article>
+<!-- Quick Summary / Bento Note -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+<div class="p-5 bg-tertiary-fixed rounded-2xl flex flex-col justify-between">
+<span class="material-symbols-outlined text-on-tertiary-fixed">info</span>
+<p class="mt-4 text-on-tertiary-fixed font-title-md leading-snug">Average response time for this company is 4 days.</p>
+</div>
+<div class="p-5 bg-primary-fixed rounded-2xl flex flex-col justify-between">
+<span class="material-symbols-outlined text-on-primary-fixed">link</span>
+<p class="mt-4 text-on-primary-fixed font-title-md leading-snug">2 LinkedIn connections work here. Ask for advice?</p>
+</div>
+<div class="p-5 bg-surface-container-high rounded-2xl border border-outline-variant/30 flex flex-col justify-between">
+<span class="material-symbols-outlined text-on-surface-variant">history</span>
+<p class="mt-4 text-on-surface-variant font-title-md leading-snug">Applied to 3 similar roles this week.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Active: Inbox) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface shadow-sm border-t border-surface-variant/20 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined fill-icon">inbox</span>
+<span class="font-label-lg text-label-lg">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 transition-all" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-lg text-label-lg">Deadlines</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 transition-all" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-label-lg text-label-lg">Apps</span>
+</a>
+</nav>
+<!-- Desktop Floating Actions for better UX -->
+<div class="hidden md:flex fixed bottom-8 right-8 flex-col gap-3">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<script>
+        // Simple Interaction Feedback
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Active State logic for nav simulation
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.className = "flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 px-5 py-1 transition-all";
+                    const icon = i.querySelector('.material-symbols-outlined');
+                    if (icon) icon.classList.remove('fill-icon');
+                });
+                item.className = "flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-5 py-1 transition-all";
+                const activeIcon = item.querySelector('.material-symbols-outlined');
+                if (activeIcon) activeIcon.classList.add('fill-icon');
+            });
+        });
+    </script>
+</body></html>
