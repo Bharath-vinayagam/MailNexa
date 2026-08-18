@@ -51,13 +51,13 @@ app.get(['/', '/health'], (req, res) => {
     status: 'healthy',
     message: 'MailNexa AI Backend Server running on Vercel',
     timestamp: new Date().toISOString(),
-    dbConnected: mongoose.connection.readyState === 1,
+    dbConnected: typeof mongoose !== 'undefined' && mongoose.connection && mongoose.connection.readyState === 1,
   });
 });
 
 // Serverless DB Connection Middleware (non-blocking for fast serverless invocation)
 app.use((req, res, next) => {
-  if (mongoose.connection.readyState !== 1) {
+  if (typeof mongoose !== 'undefined' && mongoose.connection && mongoose.connection.readyState !== 1) {
     connectDB().catch((err) => {
       logger.error('Vercel DB connection error:', err.message);
     });
