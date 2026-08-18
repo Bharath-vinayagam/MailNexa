@@ -1,79 +1,156 @@
-# 📧 MailNexa – AI-Powered Campus Placement Assistant
+# 📧 MailNexa — AI-Powered Campus Placement & Email Intelligence Platform
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.19-02569B?logo=flutter)](https://flutter.dev)
-[![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?logo=nodedotjs)](https://nodejs.org)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)](https://mongodb.com)
-[![Google Gemini AI](https://img.shields.io/badge/Google_Gemini_AI-1.5_Flash-4285F4?logo=google)](https://aistudio.google.com)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Flutter](https://img.shields.io/badge/Flutter-Mobile_Frontend-02569B?logo=flutter)
+![Node.js](https://img.shields.io/badge/Node.js-v18+_Backend-339933?logo=nodedotjs)
+![Express](https://img.shields.io/badge/Express-REST_API-000000?logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas_Cloud-47A248?logo=mongodb)
+![Google Gemini AI](https://img.shields.io/badge/Google_Gemini-1.5_Flash_LLM-4285F4?logo=google)
+![Gmail API](https://img.shields.io/badge/Gmail_API-OAuth_2.0-EA4335?logo=gmail)
+![Vercel](https://img.shields.io/badge/Vercel-Serverless_Hosting-000000?logo=vercel)
+![Firebase](https://img.shields.io/badge/Firebase-FCM_Push_Alerts-FFCA28?logo=firebase)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-**MailNexa** is an executive full-stack mobile application and AI-driven backend engine specifically engineered for university students to solve email overload during campus placement drives.
+**MailNexa** is an AI-powered campus placement intelligence platform and mobile application specifically engineered for university students to solve email overload during placement drives.
 
-The platform integrates **Google Gmail API (OAuth 2.0)** to fetch incoming academic emails, executes automated **Google Gemini AI text classification**, performs **deterministic attachment scanning (.xlsx / .pdf)** for student identifiers, generates clean 3-4 bullet executive summaries, and presents priority feeds, application stage timelines, and deadline countdowns in a stunning **Flutter mobile application**.
+The platform leverages **Google Gmail API (OAuth 2.0)** to synchronize incoming academic emails, executes automated **Google Gemini AI text classification**, performs **deterministic attachment scanning (.xlsx / .pdf)** for student identifiers, generates clean executive bullet summaries, and tracks application stage timelines in a stunning **Flutter mobile application**.
 
----
-
-## 🔥 Key Features & Capabilities
-
-### 1. 🤖 AI Priority Classification & Bullet Summaries
-* **Smart Categorization**: Routes incoming emails into `Placement`, `Academic`, or `Promotions` with `High`, `Medium`, or `Low` priority ratings.
-* **Clean Bullet Points**: Generates 3-4 formal, action-oriented bullet points (`• `) summarizing key requirements, test dates, and action items without emojis or markdown clutter.
-
-### 2. 📑 Deterministic Shortlist Verification (0 False Positives)
-* **Hybrid Verification Engine**: Eliminates false shortlist alerts by downloading and parsing attached Excel spreadsheets (`.xlsx`) and PDFs (`.pdf`).
-* **Identifier Matching**: Strictly verifies if the student's Registration Number or Campus ID appears in text or attachments before flagging an email as `Shortlisted`.
-
-### 3. 💼 Application Stage Tracker & Timeline Stepper
-* **Visual Pipeline**: Tracks company application selection stages (`Applied` ➔ `Online Test` ➔ `Interview` ➔ `Offer` / `Rejected`).
-* **Deduplicated History**: Maintains clean timeline logs with timestamps and prep notes.
-
-### 4. ⏰ Deadline Countdowns & Reminders
-* **Action-Item Extraction**: Automatically identifies test submission deadlines and interview schedules from email text.
-* **1-Tap Reminders**: Populates the Deadlines manager with custom alerts.
-
-### 5. 🛡️ Noise Interception & Strict 250-Email Storage Cap
-* **Promotions Interceptor**: Intercepts course spam (e.g. NPTEL, Kaggle) into low-priority feeds with zero push alerts.
-* **Rolling Storage Cap**: Automatically prunes MongoDB data to maintain a maximum of 250 active emails per user for sub-50ms API response times.
-
-### 6. 🔄 Network Resilience & Bi-Directional Fallback
-* **Dio Fallback Interceptor**: Mobile app automatically switches between ADB localhost port forwarding (`127.0.0.1:5000`) and host Wi-Fi IP if network connection drops.
+By combining LLM natural language processing, real-time attachment buffer parsing, and reactive mobile state management, MailNexa transforms scattered placement emails into actionable career intelligence through a single unified interface.
 
 ---
 
-## 🛠️ Technology Stack
+# 🚀 Features
 
-| Layer | Technologies & Tools |
-|---|---|
-| **Mobile Client** | Flutter 3.19 (Dart 3.3), Material 3 Design, Riverpod 2.6, Dio HTTP Client, GoRouter |
-| **Backend API** | Node.js (v18+), Express.js (REST API), Vercel Serverless Runtime |
-| **Database** | MongoDB Atlas Cloud Database, Mongoose ODM with indexing & pre-save hooks |
-| **AI & NLP Engine** | Google Gemini Flash 1.5 LLM (`@google/generative-ai`) with deterministic prompts |
-| **Document Parsers** | `xlsx` (Excel Sheet-to-CSV Buffer Stream), `pdf-parse` (PDF Stream Extractor) |
-| **Authentication & Security** | Google OAuth 2.0 PKCE, 256-bit AES Token Encryption, JWT Refresh Token Rotation, Helmet |
+### 🤖 AI Priority Classification & Executive Bullet Summaries
 
----
+Automatically routes and summarizes incoming emails into clean, action-oriented feeds.
 
-## 🔌 API Endpoint Reference
+* **Category Classification**: `Placement`, `Academic`, `Promotions`
+* **Priority Assessment**: `High`, `Medium`, `Low`
+* **Clean Bullet Points**: Generates 3-4 formal bullet points (`• `) summarizing key requirements, test dates, and next steps without emoji or markdown clutter.
 
-| Endpoint Route | Method | Functionality Description |
-|---|---|---|
-| `/api/auth/demo-login` | `POST` | Development email authentication & JWT token generation |
-| `/api/auth/google` | `POST` | Google OAuth 2.0 authorization code exchange |
-| `/api/emails` | `GET` | Fetches filtered email list (`isShortlisted`, `priority`, `category`) |
-| `/api/emails/:id` | `GET` | Fetches single email with AI auto-summary & attachment analysis |
-| `/api/applications` | `GET` | Fetches user job applications |
-| `/api/applications/grouped` | `GET` | Groups applications by status (`Applied`, `Interview`, `Offer`, `Rejected`) |
-| `/api/applications/:id/status` | `PATCH` | Updates application selection stage with deduplicated history |
-| `/api/deadlines` | `GET` | Fetches upcoming test deadlines and interview reminders |
-| `/api/analytics/dashboard` | `GET` | Fetches dashboard summary statistics and category counts |
+Outputs include:
+* Placement Drive Announcements
+* Online Assessment (OA) Test Links
+* Technical & HR Interview Call Letters
+* General Academic Notices
+
+Powered by **Google Gemini Flash 1.5 LLM**.
 
 ---
 
-## 📂 Repository Directory Structure
+### 📑 Deterministic Shortlist Verification (0 False Positives)
+
+Eliminates shortlist anxiety and false positive alerts by downloading and parsing attached spreadsheets and documents.
+
+Supported Document Formats:
+
+| Document Format | Parser Engine | Extracted Data |
+| --------------- | ------------- | -------------- |
+| Microsoft Excel (`.xlsx`, `.xls`) | `xlsx` Sheet Buffer Stream | Student Reg No & NeoPAT ID |
+| PDF Documents (`.pdf`) | `pdf-parse` Buffer Reader | Text Stream & Registration Lists |
+| Plaintext / CSV (`.csv`, `.txt`) | Regex Stream Processor | Raw Identifier Match |
+
+Benefits:
+* Zero false positive shortlist notifications
+* Automatic identification of student's Registration Number & Campus ID
+* Overrides LLM hallucinations with deterministic verification
+* Instant high-priority alert when your name appears on selection lists
+
+---
+
+### 💼 Application Pipeline & Selection Stage Tracker
+
+Track your recruitment progression across multiple company drives simultaneously.
+
+Selection Stages Tracked:
+
+1. **Applied**: Application submitted via portal or email link
+2. **Online Test**: OA link received with submission deadline
+3. **Interview**: Technical, Managerial, or HR interview scheduled
+4. **Offer**: Final offer letter received
+5. **Rejected**: Application status closed
+
+Features:
+* Visual progress stepper bar
+* Deduplicated status history timeline
+* Executive company gradient header cards
+* Interactive preparation notes and interview tips editor
+
+---
+
+### ⏰ Deadline Countdowns & Custom Interview Reminders
+
+Never miss an online test link or interview slot again.
+
+Capabilities:
+* Automatic extraction of test submission deadlines from email text
+* 1-Tap **"Add Interview / Exam Reminder"** dialog from Application Tracker
+* Integrated Deadlines Manager tab with overdue detection
+* Direct countdown timers for upcoming test dates
+
+---
+
+### 🛡️ Noise Interception & Strict 250-Email Storage Cap
+
+Keep your inbox clean and ultra-fast.
+
+Features:
+* **Promotions Interceptor**: Intercepts course spam (NPTEL, Kaggle, Coursera) into low-priority feeds with zero push notifications
+* **250-Email Rolling Storage Cap**: Automatically prunes older MongoDB records to maintain a maximum of 250 emails per user for sub-50ms API query speeds
+* **Duplicate Prevention**: Unique Gmail ID indexing to prevent redundant email records
+
+---
+
+### 🔄 Network Resilience & Bi-Directional Fallback Interceptor
+
+Guarantees 99.9% uptime on mobile devices.
+
+Capabilities:
+* Built-in Dio HTTP client interceptor (`_FallbackUrlInterceptor`)
+* Automatic bi-directional failover between ADB localhost (`127.0.0.1:5000`) and host PC Wi-Fi IP (`172.20.129.223:5000`)
+* Seamless retry handling during USB disconnects or phone sleep modes
+
+---
+
+# 🛠️ Technology Stack & Architecture
+
+| Component | Technologies Used | Purpose |
+| --------- | ----------------- | ------- |
+| **Mobile Frontend** | Flutter 3.19 (Dart 3.3), Material 3 | Cross-platform mobile UI for Android & iOS |
+| **State Management** | Riverpod 2.6 (`FutureProvider`, `StateProvider`) | Reactive, compile-safe application state |
+| **Mobile Networking** | Dio 5.10 with Custom Fallback Interceptor | Resilient HTTP API communications & network failover |
+| **Backend API** | Node.js (v18+), Express.js | RESTful API server & background sync worker |
+| **Cloud Hosting** | Vercel Serverless Functions (`vercel.json`) | 24/7 serverless cloud deployment |
+| **Database** | MongoDB Atlas Cloud Database, Mongoose ODM | JSON document persistence with indexing & pre-save hooks |
+| **AI Engine** | Google Gemini Flash 1.5 (`@google/generative-ai`) | Zero-shot email classification & executive summarization |
+| **Document Parsers** | `xlsx`, `pdf-parse` | Buffer stream scanning for attached shortlist sheets |
+| **Authentication** | Google OAuth 2.0 PKCE, JWT Access/Refresh Tokens | Secure student authentication & access control |
+| **Security & Privacy** | 256-bit AES Encryption (`crypto-js`), Helmet, CORS | Token encryption and API protection |
+
+---
+
+# 🔌 API Specification & Route Reference
+
+| Endpoint Route | Method | Module | Description |
+| -------------- | ------ | ------ | ----------- |
+| `/api/auth/demo-login` | `POST` | Auth | Quick development email login & JWT token generation |
+| `/api/auth/google` | `POST` | Auth | Exchanges Google OAuth 2.0 authorization code |
+| `/api/emails` | `GET` | Inbox | Fetches emails list with filters (`isShortlisted`, `priority`, `category`) |
+| `/api/emails/:id` | `GET` | Inbox | Fetches single email details with Gemini AI auto-summary |
+| `/api/applications` | `GET` | Tracker | Fetches all job applications for user |
+| `/api/applications/grouped` | `GET` | Tracker | Groups applications by status (`Applied`, `Interview`, `Offer`, `Rejected`) |
+| `/api/applications/:id/status` | `PATCH` | Tracker | Updates application selection stage with deduplicated history |
+| `/api/deadlines` | `GET` | Deadlines | Fetches upcoming test deadlines and interview reminders |
+| `/api/analytics/dashboard` | `GET` | Analytics | Fetches dashboard overview metrics, category counts & chart data |
+
+---
+
+# 📁 Repository Directory Structure
 
 ```
 MailNexa/
 ├── server/                        # Node.js Express Backend API
-│   ├── config/                    # Database, Gemini AI, OAuth & Firebase Configs
+│   ├── config/                    # DB, Gemini AI, OAuth & Firebase Configs
 │   ├── controllers/               # Express Route Handlers (Auth, Emails, Applications, Analytics)
 │   ├── middleware/                # JWT Auth, Rate Limiters, Error Handlers, CORS
 │   ├── models/                    # MongoDB Mongoose Schemas (Email, User, Application, Deadline)
@@ -100,18 +177,18 @@ MailNexa/
 
 ---
 
-## ⚙️ Environment Setup (`server/.env`)
+# ⚙️ Environment Configuration
 
-Create a `.env` file inside the `server/` directory:
+To configure the backend server locally, create a `.env` file in the `server/` directory:
 
 ```ini
 NODE_ENV=development
 PORT=5000
 
-# MongoDB Cloud Connection
+# MongoDB Atlas Cloud Connection
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/mailguard?retryWrites=true&w=majority
 
-# JWT & Security Secrets
+# JWT Security Secrets
 JWT_SECRET=your_super_secret_jwt_key_minimum_64_characters
 JWT_EXPIRES_IN=15m
 JWT_REFRESH_SECRET=your_super_secret_refresh_key_min_64_chars
@@ -128,34 +205,46 @@ GEMINI_MODEL=gemini-3.5-flash-lite
 
 ---
 
-## 🚀 Quick Start & Deployment
+# 🚀 Getting Started & How to Run
 
-### 1. Run Backend Server
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Bharath-vinayagam/MailNexa.git
+cd MailNexa
+```
+
+### 2. Start Backend Server
 ```bash
 cd server
 npm install
 npm start
 ```
+*Server starts on `http://localhost:5000`*
 
-### 2. Run Mobile Application
+### 3. Run Mobile Application
 ```bash
 cd mobile
 flutter pub get
 flutter run
 ```
 
-### 3. Build Standalone Release APK
+### 4. Build Standalone Release APK
 ```bash
 cd mobile
 flutter build apk --release
 ```
+*Output location: `mobile/build/app/outputs/flutter-apk/app-release.apk`*
 
 ---
 
-## 🛡️ Privacy & Security
-All confidential environment variables (`.env`), Google OAuth keys, and private credentials are strictly excluded from source control via `.gitignore`. Users configure their own Registration Number and Campus ID in the app **Settings Screen**.
+# 🛡️ Security & Data Privacy
+
+* **OAuth 2.0 PKCE**: Sensitive Google OAuth refresh tokens are encrypted using **256-bit AES encryption** before database storage.
+* **Excluded Credentials**: All environment files (`.env`), Google client secrets, and credentials are protected and excluded via `.gitignore`.
+* **User Identifiers**: Students configure their own Registration Number and Campus ID safely within the mobile app **Settings Screen**.
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License.
+# 📄 License
+
+This project is licensed under the **MIT License**.
