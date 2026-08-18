@@ -263,7 +263,3 @@ flutter build apk --release
 * **Project**: MailNexa – AI-Powered Campus Placement Intelligence Platform
 
 ---
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
