@@ -122,7 +122,7 @@ const startServer = async () => {
       logger.info(`MailNexa server running on port ${PORT} in ${process.env.NODE_ENV} mode on 0.0.0.0`);
     });
 
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
       startAllJobs();
     }
   } catch (error) {
