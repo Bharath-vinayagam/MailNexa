@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const morgan = require('morgan');
 
 const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const logger = require('./utils/logger');
 const errorHandler = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
