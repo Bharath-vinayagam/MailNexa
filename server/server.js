@@ -44,16 +44,24 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
-const mongoose = require('mongoose');
+// ─── Health & Root Check (Always Responds 200 OK) ───────────────────────
+app.get(['/', '/health'], (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    message: 'MailNexa AI Backend Server running on Vercel',
+    timestamp: new Date().toISOString(),
+    dbConnected: mongoose.connection.readyState === 1,
+  });
+});
 
-// Serverless DB Connection Middleware (for Vercel execution)
+// Serverless DB Connection Middleware (for Vercel execution on /api routes)
 app.use(async (req, res, next) => {
   if (mongoose.connection.readyState !== 1) {
     try {
       await connectDB();
     } catch (err) {
       logger.error('Vercel DB connection error:', err.message);
-      return res.status(500).json({ success: false, error: 'Database connection failed' });
+      return res.status(500).json({ success: false, error: 'Database connection failed: ' + err.message });
     }
   }
   next();
