@@ -54,15 +54,12 @@ app.get(['/', '/health'], (req, res) => {
   });
 });
 
-// Serverless DB Connection Middleware (for Vercel execution on /api routes)
-app.use(async (req, res, next) => {
+// Serverless DB Connection Middleware (non-blocking for fast serverless invocation)
+app.use((req, res, next) => {
   if (mongoose.connection.readyState !== 1) {
-    try {
-      await connectDB();
-    } catch (err) {
+    connectDB().catch((err) => {
       logger.error('Vercel DB connection error:', err.message);
-      return res.status(500).json({ success: false, error: 'Database connection failed: ' + err.message });
-    }
+    });
   }
   next();
 });
