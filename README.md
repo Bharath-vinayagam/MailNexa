@@ -245,6 +245,25 @@ flutter build apk --release
 
 ---
 
+# 🔮 Future Enhancements & Roadmap
+
+* ⚡ **Zero-Latency Local Caching**: Implement Hive offline storage in Flutter for 0ms instant initial load times while syncing in the background.
+* 📅 **1-Tap Calendar Synchronization**: Sync interview schedules and OA deadlines directly to native Android and iOS calendars.
+* ⚡ **Real-Time Webhooks**: Integrate Google Cloud Pub/Sub push notifications for sub-500ms email delivery alerts.
+* 🎯 **AI Placement Readiness Score**: Calculate a composite readiness metric based on active applications, shortlist frequency, and test deadlines.
+* 🔍 **Universal Smart Search**: Expand top search bar to query across Emails, Company Applications, and Deadlines simultaneously.
+
+---
+
+# 👤 Author & Attribution
+
+### **Bharath Vinayagam**
+* **Role**: Lead Full-Stack & Mobile Systems Architect
+* **GitHub**: [@Bharath-vinayagam](https://github.com/Bharath-vinayagam)
+* **Project**: MailNexa – AI-Powered Campus Placement Intelligence Platform
+
+---
+
 # 📄 License
 
 This project is licensed under the **MIT License**.
