@@ -1,12 +1,18 @@
-# 📧 MailNexa – AI-Powered Gmail Priority Assistant & Campus Placement Tracker
+# 📧 MailNexa – AI-Powered Campus Placement Assistant
 
-MailNexa is an executive full-stack mobile application and AI-driven backend engine specifically engineered for university students to solve email overload during campus placement drives. 
+[![Flutter](https://img.shields.io/badge/Flutter-3.19-02569B?logo=flutter)](https://flutter.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?logo=nodedotjs)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)](https://mongodb.com)
+[![Google Gemini AI](https://img.shields.io/badge/Google_Gemini_AI-1.5_Flash-4285F4?logo=google)](https://aistudio.google.com)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+**MailNexa** is an executive full-stack mobile application and AI-driven backend engine specifically engineered for university students to solve email overload during campus placement drives.
 
 The platform integrates **Google Gmail API (OAuth 2.0)** to fetch incoming academic emails, executes automated **Google Gemini AI text classification**, performs **deterministic attachment scanning (.xlsx / .pdf)** for student identifiers, generates clean 3-4 bullet executive summaries, and presents priority feeds, application stage timelines, and deadline countdowns in a stunning **Flutter mobile application**.
 
 ---
 
-## ✨ Key Features & Capabilities
+## 🔥 Key Features & Capabilities
 
 ### 1. 🤖 AI Priority Classification & Bullet Summaries
 * **Smart Categorization**: Routes incoming emails into `Placement`, `Academic`, or `Promotions` with `High`, `Medium`, or `Low` priority ratings.
@@ -14,22 +20,22 @@ The platform integrates **Google Gmail API (OAuth 2.0)** to fetch incoming acade
 
 ### 2. 📑 Deterministic Shortlist Verification (0 False Positives)
 * **Hybrid Verification Engine**: Eliminates false shortlist alerts by downloading and parsing attached Excel spreadsheets (`.xlsx`) and PDFs (`.pdf`).
-* **Identifier Matching**: Strictly verifies if the student's **Registration Number** or **Campus NeoPAT ID** appears in the text or attachments before flagging an email as `Shortlisted`.
+* **Identifier Matching**: Strictly verifies if the student's Registration Number or Campus ID appears in text or attachments before flagging an email as `Shortlisted`.
 
 ### 3. 💼 Application Stage Tracker & Timeline Stepper
-* **Visual Pipeline**: Tracks company application stages (`Applied` ➔ `Online Test` ➔ `Interview` ➔ `Offer` / `Rejected`).
+* **Visual Pipeline**: Tracks company application selection stages (`Applied` ➔ `Online Test` ➔ `Interview` ➔ `Offer` / `Rejected`).
 * **Deduplicated History**: Maintains clean timeline logs with timestamps and prep notes.
 
-### 4. ⏰ Deadline Countdowns & Interview Reminders
+### 4. ⏰ Deadline Countdowns & Reminders
 * **Action-Item Extraction**: Automatically identifies test submission deadlines and interview schedules from email text.
-* **1-Tap Reminder Creation**: Allows students to add manual reminders that populate the Deadlines tab.
+* **1-Tap Reminders**: Populates the Deadlines manager with custom alerts.
 
 ### 5. 🛡️ Noise Interception & Strict 250-Email Storage Cap
-* **Promotions Interceptor**: Intercepts course spam (e.g. NPTEL, Kaggle) into low-priority feeds with zero push notifications.
+* **Promotions Interceptor**: Intercepts course spam (e.g. NPTEL, Kaggle) into low-priority feeds with zero push alerts.
 * **Rolling Storage Cap**: Automatically prunes MongoDB data to maintain a maximum of 250 active emails per user for sub-50ms API response times.
 
 ### 6. 🔄 Network Resilience & Bi-Directional Fallback
-* **Dio Fallback Interceptor**: Mobile app automatically switches between ADB localhost port forwarding (`127.0.0.1:5000`) and host Wi-Fi IP (`172.20.129.223:5000`) if network connection drops.
+* **Dio Fallback Interceptor**: Mobile app automatically switches between ADB localhost port forwarding (`127.0.0.1:5000`) and host Wi-Fi IP if network connection drops.
 
 ---
 
@@ -42,7 +48,23 @@ The platform integrates **Google Gmail API (OAuth 2.0)** to fetch incoming acade
 | **Database** | MongoDB Atlas Cloud Database, Mongoose ODM with indexing & pre-save hooks |
 | **AI & NLP Engine** | Google Gemini Flash 1.5 LLM (`@google/generative-ai`) with deterministic prompts |
 | **Document Parsers** | `xlsx` (Excel Sheet-to-CSV Buffer Stream), `pdf-parse` (PDF Stream Extractor) |
-| **Authentication & Security**| Google OAuth 2.0 PKCE, 256-bit AES Token Encryption, JWT Refresh Token Rotation, Helmet |
+| **Authentication & Security** | Google OAuth 2.0 PKCE, 256-bit AES Token Encryption, JWT Refresh Token Rotation, Helmet |
+
+---
+
+## 🔌 API Endpoint Reference
+
+| Endpoint Route | Method | Functionality Description |
+|---|---|---|
+| `/api/auth/demo-login` | `POST` | Development email authentication & JWT token generation |
+| `/api/auth/google` | `POST` | Google OAuth 2.0 authorization code exchange |
+| `/api/emails` | `GET` | Fetches filtered email list (`isShortlisted`, `priority`, `category`) |
+| `/api/emails/:id` | `GET` | Fetches single email with AI auto-summary & attachment analysis |
+| `/api/applications` | `GET` | Fetches user job applications |
+| `/api/applications/grouped` | `GET` | Groups applications by status (`Applied`, `Interview`, `Offer`, `Rejected`) |
+| `/api/applications/:id/status` | `PATCH` | Updates application selection stage with deduplicated history |
+| `/api/deadlines` | `GET` | Fetches upcoming test deadlines and interview reminders |
+| `/api/analytics/dashboard` | `GET` | Fetches dashboard summary statistics and category counts |
 
 ---
 
@@ -72,32 +94,15 @@ MailNexa/
 │   │       ├── inbox/             # Smart Inbox, Filters & Detail Summary View
 │   │       └── settings/          # Campus Profile & Custom AI Prompt Manager
 │   └── pubspec.yaml               # Flutter Package Dependencies
-├── README.md                      # Project GitHub Documentation
-├── README.txt                     # Plaintext Documentation
+├── README.md                      # Project GitHub Markdown Documentation
 └── requirements.txt               # Dependencies & Environment Specifications
 ```
 
 ---
 
-## 🔌 API Endpoint Reference
+## ⚙️ Environment Setup (`server/.env`)
 
-| Route | Method | Description |
-|---|---|---|
-| `/api/auth/demo-login` | `POST` | Development email authentication and JWT token generation |
-| `/api/auth/google` | `POST` | Exchanges Google OAuth 2.0 authorization code for tokens |
-| `/api/emails` | `GET` | Fetches filtered email list (`isShortlisted`, `priority`, `category`) |
-| `/api/emails/:id` | `GET` | Fetches single email with AI auto-summary & attachment analysis |
-| `/api/applications` | `GET` | Fetches user job applications |
-| `/api/applications/grouped` | `GET` | Groups applications by status (`Applied`, `Interview`, `Offer`, `Rejected`) |
-| `/api/applications/:id/status` | `PATCH` | Updates application selection stage with deduplicated history |
-| `/api/deadlines` | `GET` | Fetches upcoming test deadlines and interview reminders |
-| `/api/analytics/dashboard` | `GET` | Fetches dashboard summary statistics and category counts |
-
----
-
-## ⚙️ Environment Configuration (`server/.env`)
-
-To run the backend server, create a `.env` file inside the `server/` directory:
+Create a `.env` file inside the `server/` directory:
 
 ```ini
 NODE_ENV=development
@@ -123,7 +128,7 @@ GEMINI_MODEL=gemini-3.5-flash-lite
 
 ---
 
-## 🚀 Quick Start & How to Run
+## 🚀 Quick Start & Deployment
 
 ### 1. Run Backend Server
 ```bash
@@ -131,7 +136,6 @@ cd server
 npm install
 npm start
 ```
-*Server starts on `http://localhost:5000`*
 
 ### 2. Run Mobile Application
 ```bash
@@ -145,12 +149,11 @@ flutter run
 cd mobile
 flutter build apk --release
 ```
-*Release APK located at: `mobile/build/app/outputs/flutter-apk/app-release.apk`*
 
 ---
 
-## 🛡️ Privacy & Confidentiality Note
-All sensitive environment variables (`.env`), Google OAuth keys, and private credentials are excluded from source control via `.gitignore`. Users configure their own Registration Number and Campus ID in the app **Settings Screen**.
+## 🛡️ Privacy & Security
+All confidential environment variables (`.env`), Google OAuth keys, and private credentials are strictly excluded from source control via `.gitignore`. Users configure their own Registration Number and Campus ID in the app **Settings Screen**.
 
 ---
 
